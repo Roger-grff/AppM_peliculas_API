@@ -207,9 +207,7 @@ dependencies:
 
 ## 👨‍💻 Integrantes
 
-- Roger Greff
-- Nombre Integrante 2
-- Nombre Integrante 3
+- Roger Grefa
 
 **Carrera:** Desarrollo de Software
 
