@@ -4,7 +4,7 @@ import '../db/mongo_database.dart';
 import '../models/peliculas.dart';
 import 'detail_page.dart';
 import 'form_page.dart';
-import 'api_page.dart';
+
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -122,29 +122,18 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-  title: const Text('Mis Películas'),
+  title: const Text('Mis favoritos'),
   actions: [
     IconButton(
       onPressed: refrescar,
       icon: const Icon(Icons.refresh),
     ),
-    IconButton(
-      icon: const Icon(Icons.public),
-      onPressed: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) =>  ApiPage(),
-          ),
-        );
-      },
-    ),
   ],
 ),
-      floatingActionButton: FloatingActionButton(
+      /* floatingActionButton: FloatingActionButton(
         onPressed: () => abrirFormulario(),
         child: const Icon(Icons.add),
-      ),
+      ), */
       body: FutureBuilder<List<Pelicula>>(
         future: peliculasFuture,
         builder: (context, snapshot) {

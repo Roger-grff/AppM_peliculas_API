@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/services.dart';
+import 'detail_api_page.dart';
 
 class ApiPage extends StatefulWidget {
   const ApiPage({super.key});
@@ -270,8 +271,20 @@ class _ApiPageState extends State<ApiPage> {
                     ),
                     isThreeLine:
                         true,
+                    onTap: () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => DetailApiPage(
+                            show: show,
+                          ),
+                        ),
+                      );
+                      if(!mounted) return;
+                      setState(() {});
+                    },
                   ),
-                );
+                );   
               },
             ),
           ),

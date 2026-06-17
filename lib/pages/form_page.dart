@@ -158,8 +158,8 @@ class _FormPageState extends State<FormPage> {
       appBar: AppBar(
         title: Text(
           editando
-              ? 'Editar película'
-              : 'Nueva película',
+              ? 'Editar Serie'
+              : 'Nueva Serie',
         ),
       ),
       body: SingleChildScrollView(
