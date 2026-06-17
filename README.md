@@ -8,6 +8,10 @@
 ---
 # Video
 https://drive.google.com/file/d/1xegVKCzvjJdvtvSkcpAefXnJ3yYJHK5Q/view?usp=sharing
+
+#APK
+https://drive.google.com/file/d/1R3VZW5gq2VLn9GtAXqictlllrJ_455A_/view?usp=sharing
+
 ## 📖 Descripción
 
 Aplicación desarrollada en **Flutter** que permite gestionar un catálogo series mediante un sistema **CRUD (Crear, Leer, Actualizar y Eliminar)** conectado a **MongoDB Atlas**.
