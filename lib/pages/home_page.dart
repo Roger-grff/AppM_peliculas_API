@@ -4,6 +4,7 @@ import '../db/mongo_database.dart';
 import '../models/peliculas.dart';
 import 'detail_page.dart';
 import 'form_page.dart';
+import 'api_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,9 +22,9 @@ class _HomePageState extends State<HomePage> {
     cargarDatos();
   }
 
-  void cargarDatos() {
-    peliculasFuture = MongoDatabase.getPeliculas();
-  }
+  Future<void> cargarDatos() async {
+  peliculasFuture = MongoDatabase.getPeliculas();
+}
 
   Future<void> refrescar() async {
     setState(() {
@@ -62,7 +63,10 @@ class _HomePageState extends State<HomePage> {
             FilledButton(
               onPressed: () {
                 Navigator.pop(context);
-                eliminar(item.id);
+
+                if (item.id != null) {
+                  eliminar(item.id!);
+                }
               },
               child: const Text('Eliminar'),
             ),
@@ -92,34 +96,51 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget imagenVideojuego(String url) {
-    if (url.isEmpty) {
-      return const Icon(Icons.videogame_asset, size: 50);
-    }
-
-    return Image.network(
-      url,
-      width: 60,
-      height: 60,
-      fit: BoxFit.cover,
-      errorBuilder: (_, _, _) {
-        return const Icon(Icons.broken_image, size: 50);
-      },
+  Widget imagenPelicula(String poster) {
+  if (poster.isEmpty) {
+    return const Icon(
+      Icons.movie,
+      size: 50,
     );
   }
+
+  return Image.network(
+    poster,
+    width: 60,
+    height: 60,
+    fit: BoxFit.cover,
+    errorBuilder: (context, error, stackTrace) {
+      return const Icon(
+        Icons.broken_image,
+        size: 50,
+      );
+    },
+  );
+}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Videojuegos'),
-        actions: [
-          IconButton(
-            onPressed: refrescar,
-            icon: const Icon(Icons.refresh),
+  title: const Text('Mis Películas'),
+  actions: [
+    IconButton(
+      onPressed: refrescar,
+      icon: const Icon(Icons.refresh),
+    ),
+    IconButton(
+      icon: const Icon(Icons.public),
+      onPressed: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) =>  ApiPage(),
           ),
-        ],
-      ),
+        );
+      },
+    ),
+  ],
+),
       floatingActionButton: FloatingActionButton(
         onPressed: () => abrirFormulario(),
         child: const Icon(Icons.add),
@@ -158,7 +179,7 @@ class _HomePageState extends State<HomePage> {
             child: ListView.builder(
               itemCount: data.length,
               itemBuilder: (context, index) {
-                final Videojuego item = data[index];
+                final Pelicula item = data[index];
 
                 return Card(
                   margin: const EdgeInsets.symmetric(
@@ -166,10 +187,10 @@ class _HomePageState extends State<HomePage> {
                     vertical: 6,
                   ),
                   child: ListTile(
-                    leading: imagenVideojuego(item.imagen),
+                    leading: imagenPelicula(item.poster),
                     title: Text(item.titulo),
                     subtitle: Text(
-                      '${item.plataforma} | Stock: ${item.stock} | \$${item.precio}',
+                      '${item.genero} | Año: ${item.anio} | Calificación: ${item.calificacion}',
                     ),
                     onTap: () => abrirDetalle(item),
                     trailing: Row(
@@ -179,14 +200,16 @@ class _HomePageState extends State<HomePage> {
                           tooltip: 'Editar',
                           icon: const Icon(Icons.edit),
                           onPressed: () {
-                            abrirFormulario(videojuego: item);
+                            abrirFormulario(pelicula: item);
                           },
                         ),
                         IconButton(
                           tooltip: 'Eliminar',
                           icon: const Icon(Icons.delete),
                           onPressed: () {
-                            confirmarEliminar(item);
+                            if (item.id != null) {
+                              eliminar(item.id!);
+                            }
                           },
                         ),
                       ],

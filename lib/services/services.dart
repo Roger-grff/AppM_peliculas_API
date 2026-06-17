@@ -1,14 +1,24 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class OmdbService {
-  static const apiKey = "TU_API_KEY";
-
-  static Future<List<dynamic>> buscarPeliculas(
-      String texto, int page) async {
-
+class TvMazeService {
+  static Future<List<dynamic>> obtenerSeries(int pagina) async {
     final url = Uri.parse(
-      'https://www.omdbapi.com/?apikey=$apiKey&s=$texto&page=$page',
+      'https://api.tvmaze.com/shows?page=$pagina',
+    );
+
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    }
+
+    throw Exception('Error al obtener series');
+  }
+
+  static Future<List<dynamic>> buscarSeries(String texto) async {
+    final url = Uri.parse(
+      'https://api.tvmaze.com/search/shows?q=$texto',
     );
 
     final response = await http.get(url);
@@ -16,13 +26,9 @@ class OmdbService {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
 
-      if (data["Search"] != null) {
-        return data["Search"];
-      }
-
-      return [];
+      return data.map((e) => e['show']).toList();
     }
 
-    throw Exception("Error al consumir la API");
+    throw Exception('Error al buscar series');
   }
 }
