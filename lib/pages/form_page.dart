@@ -83,7 +83,7 @@ class _FormPageState extends State<FormPage> {
   descripcion: descripcionCtrl.text.trim(),
   fuente: fuenteCtrl.text.trim(),
 );
-
+print('Guardando...');    
     try {
       if (widget.pelicula == null) {
         await MongoDatabase.insertPelicula(pelicula);
@@ -93,7 +93,21 @@ class _FormPageState extends State<FormPage> {
 
       if (!mounted) return;
 
-      Navigator.pop(context);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Película guardada correctamente'),
+        ),
+      );
+
+      tituloCtrl.clear();
+      generoCtrl.clear();
+      directorCtrl.clear();
+      anioCtrl.clear();
+      calificacionCtrl.clear();
+      posterCtrl.clear();
+      descripcionCtrl.clear();
+      fuenteCtrl.clear();
+
     } catch (e) {
       if (!mounted) return;
 
