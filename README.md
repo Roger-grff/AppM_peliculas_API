@@ -6,10 +6,11 @@
 ![License](https://img.shields.io/badge/License-MIT-yellow)
 
 ---
-
+# Video
+https://drive.google.com/file/d/1xegVKCzvjJdvtvSkcpAefXnJ3yYJHK5Q/view?usp=sharing
 ## 📖 Descripción
 
-Aplicación desarrollada en **Flutter** que permite gestionar un catálogo de películas y series mediante un sistema **CRUD (Crear, Leer, Actualizar y Eliminar)** conectado a **MongoDB Atlas**.
+Aplicación desarrollada en **Flutter** que permite gestionar un catálogo series mediante un sistema **CRUD (Crear, Leer, Actualizar y Eliminar)** conectado a **MongoDB Atlas**.
 
 La aplicación integra la **API pública TVMaze**, permitiendo buscar series de televisión, visualizar sus detalles y guardarlas en la base de datos como favoritas.
 
@@ -17,12 +18,12 @@ La aplicación integra la **API pública TVMaze**, permitiendo buscar series de 
 
 ## ✨ Funcionalidades
 
-### 🎬 Gestión de Películas (CRUD)
-- ✅ Crear películas.
-- ✅ Consultar películas registradas.
-- ✅ Editar películas.
-- ✅ Eliminar películas.
-- ✅ Ver detalles de cada película.
+### 🎬 Gestión de Series (CRUD)
+- ✅ Crear series.
+- ✅ Consultar series registradas.
+- ✅ Editar series.
+- ✅ Eliminar series.
+- ✅ Ver detalles de cada series.
 
 ### 📺 Integración con TVMaze API
 - ✅ Buscar series por nombre.
@@ -123,9 +124,9 @@ https://www.tvmaze.com/api
 ## 📱 Pantallas del Sistema
 
 ### 🏠 HomePage
-- Listado de películas favoritas.
-- Editar películas.
-- Eliminar películas.
+- Listado de series favoritas.
+- Editar series.
+- Eliminar series.
 - Ver detalles.
 
 ### 📺 ApiPage
@@ -138,7 +139,7 @@ https://www.tvmaze.com/api
 - Guardar en favoritos.
 
 ### ➕ FormPage
-- Registro manual de películas.
+- Registro manual de series.
 
 ### ℹ️ AboutPage
 - Integrantes.
