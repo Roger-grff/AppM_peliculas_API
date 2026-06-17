@@ -159,7 +159,7 @@ class _HomePageState extends State<HomePage> {
 
           if (data.isEmpty) {
             return const Center(
-              child: Text('No hay películas registradas'),
+              child: Text('No hay series registradas'),
             );
           }
 
